@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.bg-custom {
+    background-color: #d2e1a3 !important; /* Custom Orange */
+}
+.bg-custom1 {
+    background-color: #e0a9a9 !important; /* Custom Orange */
+}
+.logo{
+    height: 3%;
+    width: 3%;
+    /* padding-right: 32px; */
+}
+.card-img-top{
+    height: 200px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.admin-img{
+    width: 100px;
+    object-fit: contain;
+}
