@@ -1,3 +1,8 @@
+<?php
+include './includes/connect.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,6 +71,14 @@
         </p>
     </div>
     
+    <div class="hero123">
+        <div>
+            <h1>Heading</h1>
+            <p>Paragraph</p>
+        </div>
+    </div>
+
+
         <!-- Fourth Child -->
     <div class="row">
         <div class="col-md-10">
@@ -136,46 +149,25 @@
         </div>
         <div class="col-md-2 bg-custom1 p-0 me-auto">
             <!-- sidenav -->
-            <ul class="navbar-nav me-auto text-center">
-                <li class="nav-item bg-custom">
-                    <a class="nav-link" href="#"><h4>CATEGORIES</h4></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CATEGORY 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CATEGORY 2</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CATEGORY 3</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CATEGORY 4</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CATEGORY 5</a>
-                </li>
-            </ul>
 
             <ul class="navbar-nav me-auto text-center">
                 <li class="nav-item bg-custom">
-                    <a class="nav-link" href="#"><h4>CATEGORIES</h4></a>
+                    <a class="nav-link" href="#"><h4>Categories</h4></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CATEGORY 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CATEGORY 2</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CATEGORY 3</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CATEGORY 4</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CATEGORY 5</a>
-                </li>
+                    <?php
+                        $select_category="select * from categories";
+                        $result_cat=mysqli_query($con, $select_category);
+                        while($row_data=mysqli_fetch_assoc($result_cat))
+                        {
+                            $category_title = $row_data['category_title'];
+                            $category_id = $row_data['category_id'];
+                            echo " <li class='nav-item'>
+                            <a class='nav-link' href='index.php?category=$category_id'>$category_title</a>
+                            </li> " ;
+                        }
+                        // $row_brands=mysqli_fetch_assoc($result_brands);
+                        // echo $row_brands['brand_title'];
+                    ?>
             </ul>
         </div>
         
@@ -186,9 +178,9 @@
     
 
     <!-- Footer -->
-     <div class="bg-custom p-3 text-center">
+    <div class="bg-custom p-3 text-center">
         <p>ALl Rights Reserved @2025 Crystangle</p>
-     </div>
+    </div>
     
     </div>
 
