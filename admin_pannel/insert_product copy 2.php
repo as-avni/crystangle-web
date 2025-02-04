@@ -19,8 +19,6 @@ if (isset($_POST['insert_product'])){
     $temp_image2 = $_FILES['product_image2']['tmp_name'];
     $temp_image3 = $_FILES['product_image3']['tmp_name'];
 
-    
-
     // checking empty fields
     if ($product_title == '' || $product_description == '' || $product_keywords == '' || $product_category == '' || $product_price == '') {
         echo "<script>alert('Please fill all fields!')</script>";
@@ -30,8 +28,6 @@ if (isset($_POST['insert_product'])){
     move_uploaded_file($temp_image1, "./product_images/$product_image1");
     move_uploaded_file($temp_image2, "./product_images/$product_image2");
     move_uploaded_file($temp_image3, "./product_images/$product_image3");
-
-
 
     $insert_cat = "insert into products (product_title, product_description, keyword, category_id, product_image1, product_image2, product_image3, product_price, date) values ('$product_title', '$product_description', '$product_keywords', '$product_category', '$product_image1', '$product_image2', '$product_image3', '$product_price', NOW())";
     $run_cat = mysqli_query($con, $insert_cat);

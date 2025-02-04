@@ -2,7 +2,6 @@
 include './includes/connect.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,79 +70,46 @@ include './includes/connect.php';
         </p>
     </div>
     
-    <div class="hero123">
+    <!-- <div class="hero123">
         <div>
             <h1>Heading</h1>
             <p>Paragraph</p>
         </div>
-    </div>
+    </div> -->
 
 
         <!-- Fourth Child -->
-    <div class="row">
+    <div class="row px-1">
         <div class="col-md-10">
         <!-- products -->
             <div class="row">
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./src/images/img-hairband.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Hair Scrunchies</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-info">Add to Cart</a>                            </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./src/images/img-hairband.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Hair Scrunchies</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-info">Add to Cart</a>                            </div>
-                    </div>
-                </div>
-                    
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./src/images/img-hairband.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Hair Scrunchies</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-info">Add to Cart</a>                            </div>
-                    </div>
-                </div>
+            
+            <?php
+            $select_products = "select * from products";
+            $result_products = mysqli_query($con, $select_products);
+            while($row_products = mysqli_fetch_assoc($result_products))
+            {
+                $product_id = $row_products["product_id"];
+                $product_title = $row_products["product_title"];
+                $product_description = $row_products["product_description"];
+                $product_keywords = $row_products["product_keywords"];
+                $product_image1 = $row_products["product_image1"];
+                $product_price = $row_products["product_price"];
+                $category_id = $row_data["category_id"];
 
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./src/images/img-hairband.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Hair Scrunchies</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-info">Add to Cart</a>                            </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./src/images/img-hairband.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Hair Scrunchies</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-info">Add to Cart</a>                            </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./src/images/img-hairband.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Hair Scrunchies</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-info">Add to Cart</a>
+                echo "<div class='col-md-4 mb-2'>
+                    <div class='card'>
+                        <img src='./admin_pannel/product_images/$product_image1' class='card-img-top' alt='...'>
+                        <div class='card-body'>
+                            <h5 class='card-title'>$product_title</h5>
+                            <p class='card-text'>$product_description</p>
+                            <a href='#' class='btn btn-info'>Add to Cart</a>                            
                         </div>
                     </div>
-                </div>
+                </div>";
+
+            }
+            ?>
 
             </div>
         </div>

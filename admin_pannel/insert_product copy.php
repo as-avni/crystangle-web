@@ -1,48 +1,56 @@
 <?php
 include '../includes/connect.php';
-if (isset($_POST['insert_product'])){
-
-    $product_title = $_POST['product_title'];
-    $product_description = $_POST['product_description'];
-    $product_keywords = $_POST['product_keywords'];
-    $product_category = $_POST['product_category'];
-    $product_price = $_POST['product_price'];
-    
-    // acessing the images
-    $product_image1 = $_FILES['product_image1']['name'];
-    $product_image2 = $_FILES['product_image2']['name'];
-    $product_image3 = $_FILES['product_image3']['name'];
-    // echo $product_image1.''.$product_title.''.$product_description.'';
-
-    // temp names of images
-    $temp_image1 = $_FILES['product_image1']['tmp_name'];
-    $temp_image2 = $_FILES['product_image2']['tmp_name'];
-    $temp_image3 = $_FILES['product_image3']['tmp_name'];
-
-    
-
-    // checking empty fields
-    if ($product_title == '' || $product_description == '' || $product_keywords == '' || $product_category == '' || $product_price == '') {
-        echo "<script>alert('Please fill all fields!')</script>";
-        exit();
-    }else{
-    //  move the images to the product_images folder
-    move_uploaded_file($temp_image1, "./product_images/$product_image1");
-    move_uploaded_file($temp_image2, "./product_images/$product_image2");
-    move_uploaded_file($temp_image3, "./product_images/$product_image3");
 
 
+if (isset($_POST['insert_product'])) {
+        $product_title=$_POST['product_title'];
+        $description=$_POST['product_description'];
+        $product_keywords=$_POST['product_keywords'];
+        $product_category=$_POST['product_category'];
+        $product_price=$_POST['product_price'];
+        $product_status="true";
 
-    $insert_cat = "insert into products (product_title, product_description, keyword, category_id, product_image1, product_image2, product_image3, product_price, date) values ('$product_title', '$product_description', '$product_keywords', '$product_category', '$product_image1', '$product_image2', '$product_image3', '$product_price', NOW())";
-    $run_cat = mysqli_query($con, $insert_cat);
-    if($run_cat){
-        echo "<script>alert('Product has been inserted successfully!')</script>";
-        //     echo "<script>window.open('index.php?insert_category', '_self')</script>";
+
+        $insert_products = "insert into products (product_title, product_description, product_keywords, category_id, product_price, date, status) values ('A', 'B', 'C', 1, '1200', NOW(), 'true')";
+        $result_insert = mysqli_query($con, $insert_products);
+        if ($result_insert) {
+            echo "<script>alert('Product has been inserted successfully!')</script>";
         }
 
-    }
+        // accessing images
+        // $product_image1=$_FILES['product_image1']['name'];
+        // $product_image2=$_FILES['product_image2']['name'];
+        // $product_image3=$_FILES['product_image3']['name'];
+
+        // // accessing images tmp name
+        // $temp_image1=$_FILES['product_image1']['tmp_name'];
+        // $temp_image2=$_FILES['product_image2']['tmp_name'];
+        // $temp_image3=$_FILES['product_image3']['tmp_name'];
+        // echo move_uploaded_file($temp_image1,"./product_images/$product_image1");
+        // echo $product_image1;
+        
+
+        // // checking empty fields
+        // if ($product_title == '' || $description == '' || $product_keywords == '' || $product_category == '' || $product_price == '') {
+        // // if ($product_title == '' || $description == '' || $product_keywords == '' || $product_category == '' || $product_price == '' || $product_image1 == '' || $product_image2 == '' || $product_image3 == '') {
+        //     echo "<script>alert('Please fill all fields!')</script>";
+        //     exit();
+        // }else{
+            // move_uploaded_file($temp_image1,"./product_images/$product_image1");
+            // move_uploaded_file($temp_image2,"./product_images/$product_image2");       
+            // move_uploaded_file($temp_image3,"./product_images/$product_image3");
+
+            // inserting data into database
+            // $insert_product = "insert into products (product_title, product_description, product_keywords, category_id, product_price, date, status) values ('$product_title', '$description', '$product_keywords', '$product_category', '$product_price', NOW(), '$product_status')";
+            // // $insert_product = "insert into 'products' (product_title, product_description, product_keywords, category_id, product_price, product_image1, product_image2, product_image3, product_price, date, status) values ('$product_title', '$description', '$product_keywords', '$product_category', '$product_price', '$product_image1', '$product_image2', '$product_image3', '$product_price', NOW(), '$product_status')";
+            // $result_insert = mysqli_query($con, $insert_product);
+            // if ($result_insert) {
+            //     echo "<script>alert('Product has been inserted successfully!')</script>";
+            // }
+        // }
     
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +81,7 @@ if (isset($_POST['insert_product'])){
             <!-- Product Description -->
             <div class="form-outline mb-4 w-50 m-auto">
                 <label for="product_description" class="form-label">Product Description</label>
-                <input type="text" id="product_description" name="product_description" placeholder="Enter Product Description" class="form-control" required>
+                <input type="text" id="product_descripion" name="product_description" placeholder="Enter Product Description" class="form-control" required>
             </div>
 
             <!-- Product Keywords -->
@@ -95,7 +103,7 @@ if (isset($_POST['insert_product'])){
                             $category_id = $row_data['category_id'];
                             echo " <option value='$category_id'>$category_title</option> ";
                         }
-                    ?> 
+                    ?>
                 </select>
             </div>
             
@@ -128,8 +136,10 @@ if (isset($_POST['insert_product'])){
                 <input type="submit" name="insert_product" value="Insert Product" class="btn btn-info mb-3 px-3">
             </div>
 
+            
+
         </form>    
     </div>
-
+    
 </body>
 </html>
