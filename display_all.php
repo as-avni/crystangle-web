@@ -8,7 +8,6 @@ include './functions/commom_function.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async data-id="five-server" src="http://localhost:5500/fiveserver.js"></script>
     <title>Crystangle - Cool Wearables</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -21,29 +20,29 @@ include './functions/commom_function.php';
 <body>
     <div class="contaier-fluid p-0">
         <?php
-        include './includes/navbar.php';
-        cart(); 
+            include './includes/navbar.php';
+            cart(); 
         ?>
 
     <!-- Seccond Child -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-custom1">
-            <ul class="navbar-nav me-auto pl-3" style="padding-left: 50px;">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Welcome, &nbsp; Sir </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
-            </ul>
-        </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-custom1">
+        <ul class="navbar-nav me-auto pl-3" style="padding-left: 50px;">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Welcome, &nbsp; Sir </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+            </li>
+        </ul>
+    </nav>
     
     <!-- Third Child -->
-        <div class="bg-light">
-            <h3 class="text-center">Crystangle, Shop</h3>
-            <p class="text-center">
-                Your Dream Destinaion for wearable articrafts.
-            </p>
-        </div>
+    <div class="bg-light">
+        <h3 class="text-center">Crystangle, Shop</h3>
+        <p class="text-center">
+            Your Dream Destinaion for wearable articrafts.
+        </p>
+    </div>
     
     <!-- <div class="hero123">
         <div>
@@ -60,7 +59,7 @@ include './functions/commom_function.php';
             <div class="row">
             
             <?php
-            displayProduct();
+            displayAllProducts();
             displayProductByCategory();
             ?>
 
