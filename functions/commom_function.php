@@ -177,8 +177,7 @@ function searchProduct(){
 // view product details
 function viewProductDetails(){
     global $con;
-
-    if (isset($_GET['product_id'])) {
+    if (isset($_GET['product_id'])){
     if (!isset($_GET['category'])){
         
         $product_id = $_GET['product_id'];
@@ -222,7 +221,6 @@ function viewProductDetails(){
                     </div>
                 </div>";
         }
-        
     }
     }
 }
@@ -238,7 +236,6 @@ function get_client_ip_address() {
     elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
     }  
-
     else{  
             $ip = $_SERVER['REMOTE_ADDR'];  
     }  
@@ -270,21 +267,38 @@ function cart(){
 function count_cart(){
     global $con;
     if(isset($_GET['add_to_cart'])){
-        
         $ip = get_client_ip_address();
-        $get_product_id = $_GET['add_to_cart'];
         $check_product = "select * from cart_details where ip_address='$ip'";
         $run_check = mysqli_query($con, $check_product);
         $count_product = mysqli_num_rows($run_check);
     }else{
-        
         $ip = get_client_ip_address();
-        $get_product_id = $_GET['add_to_cart'];
         $check_product = "select * from cart_details where ip_address='$ip'";
         $run_check = mysqli_query($con, $check_product);
         $count_product = mysqli_num_rows($run_check);
     }
     echo $count_product;
+}
+
+
+// function to get total price of items in cart
+function totalCartPrice(){
+    global $con;
+    $total = 0;
+    $ip = get_client_ip_address();
+    $select_cart = "select * from cart_details where ip_address='$ip'";
+    $run_cart = mysqli_query($con, $select_cart);
+    while($row_cart = mysqli_fetch_assoc($run_cart)){
+        $product_id = $row_cart['product_id'];
+        $product_price = "select * from products where product_id=$product_id";
+        $run_price = mysqli_query($con, $product_price);
+        while($row_price = mysqli_fetch_assoc($run_price)){
+            $product_price = array($row_price['product_price']);
+            $values = array_sum($product_price);
+            $total += $values;
+        }
+    }
+    echo $total;
 }
 
 

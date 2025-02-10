@@ -45,12 +45,7 @@ include './functions/commom_function.php';
             </p>
         </div>
     
-    <!-- <div class="hero123">
-        <div>
-            <h1>Heading</h1>
-            <p>Paragraph</p>
-        </div>
-    </div> -->
+
 
 
         <!-- Fourth Child -->

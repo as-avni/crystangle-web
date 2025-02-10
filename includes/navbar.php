@@ -19,7 +19,10 @@
                 <a class="nav-link" href="#">Contact</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i><sup><?php count_cart(); ?></sup></a>
+                <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i><sup><?php count_cart(); ?></sup></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Total : <?php totalCartPrice(); ?></a>
                 </li>
             </ul>
             <form class="d-flex" action="search_products.php" method="get">
